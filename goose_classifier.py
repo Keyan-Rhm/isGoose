@@ -78,17 +78,17 @@ for filename in glob.glob('validation_set/Goose/*'):
     img, arr = readImg(filename)
     probability = gooseIdentifier.predict(arr)
     if probability[0][0] == 1:
-    	shutil.move(filename, "2_False Negatives/" + os.path.basename(filename))
+    	shutil.move(filename, "Validation_False Negatives/" + os.path.basename(filename))
     else:
-    	shutil.move(filename, "2_True Positives/" + os.path.basename(filename))
+    	shutil.move(filename, "Validation_True Positives/" + os.path.basename(filename))
 
 for filename in glob.glob('validation_set/NotGoose/*'):
     img, arr = readImg(filename)
     probability = gooseIdentifier.predict(arr)
     if probability[0][0] == 1:
-    	shutil.move(filename, "2_True Negatives/" + os.path.basename(filename))
+    	shutil.move(filename, "Validation_True Negatives/" + os.path.basename(filename))
     else:
-    	shutil.move(filename, "2_False Positives/" + os.path.basename(filename))
+    	shutil.move(filename, "Validation_False Positives/" + os.path.basename(filename))
 
 gooseIdentifier.save("isGoose.h5")
 
